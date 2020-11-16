@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1200, 600), "The zelda",sf::Style::Close|sf::Style::Titlebar);
@@ -12,6 +13,7 @@ int main()
 
     rectangle.setPosition(440,300);
 
+    rectangle.setOrigin(50.0f,50.0f);
     sf::VideoMode::getDesktopMode();
     while (window.isOpen())
     {
@@ -26,7 +28,10 @@ int main()
                 rectangle.move(0,5);
             }
         }
-
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+            sf::Vector2i mousePos= sf::Mouse::getPosition(window);
+            rectangle.setPosition((float)mousePos.x,static_cast<float>(mousePos.y));
+        }
         window.clear();
         /*window.draw(shape);*/
         window.draw(rectangle);
