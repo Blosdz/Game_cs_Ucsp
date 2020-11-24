@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1606217112 source:/home/blozds/Desktop/Game/main.cpp
+	"Reduce.h"
+
+1606172880 /home/blozds/Desktop/Game/include/Reduce.h
+	"State.h"
+
+1606215616 source:/home/blozds/Desktop/Game/src/Reduce.cpp
+	"Reduce.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1606184897 /home/blozds/Desktop/Game/include/State.h
+	<vector>
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<iostream>
+	<fstream>
+	<sstream>
+
+1606172406 source:/home/blozds/Desktop/Game/src/State.cpp
+	"State.h"
+
+1606215246 /home/blozds/Desktop/Game/include/SplashScreen.h
+	"State.h"
+	<iostream>
+
+1606215694 source:/home/blozds/Desktop/Game/src/SplashScreen.cpp
+	"SplashScreen.h"
+
