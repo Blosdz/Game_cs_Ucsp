@@ -2,15 +2,15 @@
 1606217112 source:/home/blozds/Desktop/Game/main.cpp
 	"Reduce.h"
 
-1606172880 /home/blozds/Desktop/Game/include/Reduce.h
-	"State.h"
+1606562050 /home/blozds/Desktop/Game/include/Reduce.h
+	"gameState.h"
 
-1606215616 source:/home/blozds/Desktop/Game/src/Reduce.cpp
+1606575898 source:/home/blozds/Desktop/Game/src/Reduce.cpp
 	"Reduce.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1606184897 /home/blozds/Desktop/Game/include/State.h
+1606576076 /home/blozds/Desktop/Game/include/State.h
 	<vector>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -20,8 +20,11 @@
 	<iostream>
 	<fstream>
 	<sstream>
+	<stack>
+	<map>
+	<vector>
 
-1606172406 source:/home/blozds/Desktop/Game/src/State.cpp
+1606576082 source:/home/blozds/Desktop/Game/src/State.cpp
 	"State.h"
 
 1606215246 /home/blozds/Desktop/Game/include/SplashScreen.h
@@ -30,4 +33,10 @@
 
 1606215694 source:/home/blozds/Desktop/Game/src/SplashScreen.cpp
 	"SplashScreen.h"
+
+1606575958 source:/home/blozds/Desktop/Game/src/gameState.cpp
+	"gameState.h"
+
+1606575924 /home/blozds/Desktop/Game/include/gameState.h
+	<State.h>
 

@@ -23,9 +23,14 @@ void Reduce::initWindow()
     this->window->setVerticalSyncEnabled(vertica_sync_enable);
 }
 
+void Reduce::initStates()
+{
+    this->states.push(new gameState(this->window));
+}
 Reduce::Reduce()
 {
     this->initWindow();
+    this->initStates();
     //ctor
 }
 
@@ -33,6 +38,10 @@ Reduce::~Reduce()
 {
     delete this->window;
     //dtor
+    while(!this->states.empty()){
+        delete this->states.top(); //eliminando para no usar mas memoria
+        this->states.pop();
+    }
 }
 
 void Reduce::updateSFMLEvents()
@@ -49,12 +58,26 @@ void Reduce::update()
 {
 
     this->updateSFMLEvents();
+
+    if(!this->states.empty()){
+        this->states.top()->update(this->dt);
+        if(this->states.top()->getQuit())
+        {
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
 }
 
 void Reduce::render()
 {
 
     this->window->clear();
+    //
+    if(!this->states.empty()){
+        this->states.top()->render(this->window);
+    }
     this->window->display();
 }
 
@@ -62,7 +85,7 @@ void Reduce::render()
 void Reduce::updateDt()
 {
     /*renueeva el reloj para delta tiempo que nos demora renderizar un frame*/
-    this->dt=this->dtClock.getElapsedTime().asSeconds();
+    this->dt=this->dtClock.restart().asSeconds();
 
 
 }

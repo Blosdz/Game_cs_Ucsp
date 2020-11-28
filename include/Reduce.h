@@ -1,6 +1,7 @@
 #ifndef REDUCE_H
 #define REDUCE_H
-#include"State.h"
+#include"gameState.h"
+
 class Reduce
 {
 
@@ -8,12 +9,13 @@ class Reduce
         sf::RenderWindow* window;
         sf::Event sfEvent;
         void initWindow();
-
+        //states
+        void initStates();
 
         sf::Clock dtClock;
 
         float dt; //delta time
-
+        std::stack<State*> states; //object class no se puede crear objs solo referencias 0
     public:
         Reduce();
         virtual ~Reduce();

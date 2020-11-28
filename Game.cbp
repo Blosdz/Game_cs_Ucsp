@@ -34,12 +34,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="config/window.ini" />
 		<Unit filename="include/Reduce.h" />
 		<Unit filename="include/State.h" />
+		<Unit filename="include/gameState.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Reduce.cpp" />
 		<Unit filename="src/State.cpp" />
+		<Unit filename="src/gameState.cpp" />
+		<Unit filename="window.conf" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
