@@ -1,36 +1,29 @@
 #ifndef STATE_H
 #define STATE_H
-#include<vector>
-#include <SFML/Graphics.hpp>
-#include<SFML/System.hpp>
-#include<SFML/Window.hpp>
-#include<SFML/Audio.hpp>
-#include<SFML/Network.hpp>
-#include<iostream>
-#include<fstream> //open text file string and get the data
-#include<sstream>
-#include<stack>
-#include<map>
-#include<vector>
-
+#include"Entity.h"
 
 class State
 {
 private:
     //resources
-    std::vector<sf::Texture> textures;
+protected:
     sf::RenderWindow* window;
+    std::map<std::string,int>* supportedKeys;
+    std::map<std::string,int> keybinds;
     bool quit;
+    //resources ??
+    std::vector<sf::Texture> textures;
 
+    virtual void initKeybinds()=0;
 public:
-    State(sf::RenderWindow* window);
+    State(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys);
     virtual ~State();
 
 
     const bool& getQuit() const;
     virtual void checkForEnd();
     virtual void endState()=0;
-    virtual void updateKeyBinds(const float& dt)=0;
+    virtual void updateInput(const float& dt)=0;
     virtual void update(const float& dt)=0; //funcion virtual necesitan ser determinadas
     virtual void render(sf::RenderTarget* target=nullptr)=0;
 };

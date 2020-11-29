@@ -23,13 +23,25 @@ void Reduce::initWindow()
     this->window->setVerticalSyncEnabled(vertica_sync_enable);
 }
 
+void Reduce::initKeys()
+{
+    this->supportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
+    this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
+    this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+    this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
+    this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+
+
+}
+
 void Reduce::initStates()
 {
-    this->states.push(new gameState(this->window));
+    this->states.push(new gameState(this->window, &this->supportedKeys));
 }
 Reduce::Reduce()
 {
     this->initWindow();
+    this->initKeys();
     this->initStates();
     //ctor
 }
@@ -68,6 +80,10 @@ void Reduce::update()
             this->states.pop();
         }
     }
+    else{
+        this->endAplication();
+        this->window->close();
+    }
 }
 
 void Reduce::render()
@@ -81,7 +97,10 @@ void Reduce::render()
     this->window->display();
 }
 
-
+void Reduce::endAplication()
+{
+    std::cout<<"end application"<<"\n";
+}
 void Reduce::updateDt()
 {
     /*renueeva el reloj para delta tiempo que nos demora renderizar un frame*/
@@ -101,4 +120,3 @@ void Reduce::run()
     }
 
 }
-
