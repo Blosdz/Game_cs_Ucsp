@@ -7,7 +7,7 @@
 class gameState : public State
 {
 
-    private:
+    protected:
         Entity player;
         //funciones
         void initKeybinds();

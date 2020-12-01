@@ -13,6 +13,9 @@ protected:
     bool quit;
     //resources ??
     std::vector<sf::Texture> textures;
+    sf::Vector2i mousePosScreen;
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
 
     virtual void initKeybinds()=0;
 public:
@@ -23,6 +26,7 @@ public:
     const bool& getQuit() const;
     virtual void checkForEnd();
     virtual void endState()=0;
+    virtual void updateMousePositions();
     virtual void updateInput(const float& dt)=0;
     virtual void update(const float& dt)=0; //funcion virtual necesitan ser determinadas
     virtual void render(sf::RenderTarget* target=nullptr)=0;

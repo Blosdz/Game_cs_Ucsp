@@ -1,7 +1,6 @@
 #ifndef REDUCE_H
 #define REDUCE_H
-#include"gameState.h"
-
+#include"MainMenuState.h"
 class Reduce
 {
 
@@ -13,6 +12,7 @@ class Reduce
         //states
         void initStates();
         sf::Clock dtClock;
+
 
         float dt; //delta time
         std::stack<State*> states; //object class no se puede crear objs solo referencias 0

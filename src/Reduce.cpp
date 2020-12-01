@@ -25,18 +25,28 @@ void Reduce::initWindow()
 
 void Reduce::initKeys()
 {
-    this->supportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
-    this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
-    this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
-    this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
-    this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+    std::ifstream ifs("supported_keys.conf");
+    if(ifs.is_open())
+    {
+        std::string key="";
+        int key_value=0;
+        while(ifs>>key>>key_value){
+            this->supportedKeys[key]=key_value;
+        }
+    }
+    ifs.close();
+    //QUITAR ESTO WANDO TENGA TIEMPO
+    for(auto i :this->supportedKeys)
+    {
+        std::cout<<i.first<<" "<<i.second<<"\n";
+    }
 
 
 }
 
 void Reduce::initStates()
 {
-    this->states.push(new gameState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 Reduce::Reduce()
 {

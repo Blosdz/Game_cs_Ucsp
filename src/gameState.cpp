@@ -1,5 +1,6 @@
 #include "gameState.h"
 
+
 gameState::gameState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys)
     : State(window,supportedKeys) //inicializacion
 {
@@ -12,13 +13,6 @@ gameState::~gameState()
     //dtor
 }
 
-void gameState::initKeybinds()
-{
-    this->keybinds.emplace("MOVE_LEFT",this->supportedKeys->at("A")); //funcion creada que usara la palabra A que es base del engine sfml
-    this->keybinds.emplace("MOVE_RIGHT",this->supportedKeys->at("D"));
-    this->keybinds.emplace("MOVE_UP",this->supportedKeys->at("W"));
-    this->keybinds.emplace("MOVE_DOWN",this->supportedKeys->at("S"));
-}
 
 void gameState::updateInput(const float& dt)
 {
@@ -39,10 +33,31 @@ void gameState::updateInput(const float& dt)
 
 void gameState::update(const float& dt)
 {
+    this->updateMousePositions();
     this->updateInput(dt);
     this->player.update(dt);
 
 
+}
+void gameState::initKeybinds()
+{
+    std::ifstream ifs("gamestate_keybinds.conf");
+    if(ifs.is_open())
+    {
+        std::string key="";
+        std::string key2="";
+        while(ifs>>key>>key2){
+            this->keybinds[key]=this->supportedKeys->at(key2);
+        }
+    }
+    ifs.close();
+/*
+    this->keybinds["CLOSE"]=this->supportedKeys->at("ESCAPE");
+    this->keybinds["MOVE_LEFT"]=this->supportedKeys->at("A"); //funcion creada que usara la palabra A que es base del engine sfml
+    this->keybinds["MOVE_RIGHT"]=this->supportedKeys->at("D");
+    this->keybinds["MOVE_UP"]=this->supportedKeys->at("W");
+    this->keybinds["MOVE_DOWN"]=this->supportedKeys->at("S");
+*/
 }
 
 

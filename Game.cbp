@@ -34,10 +34,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Button.h" />
+		<Unit filename="include/Entity.h" />
+		<Unit filename="include/MainMenuState.h" />
 		<Unit filename="include/Reduce.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="include/gameState.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Button.cpp" />
+		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/MainMenuState.cpp" />
 		<Unit filename="src/Reduce.cpp" />
 		<Unit filename="src/State.cpp" />
 		<Unit filename="src/gameState.cpp" />
