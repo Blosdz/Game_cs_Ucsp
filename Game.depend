@@ -5,15 +5,15 @@
 1606750005 /home/blozds/Desktop/Game/include/Reduce.h
 	"MainMenuState.h"
 
-1606749610 source:/home/blozds/Desktop/Game/src/Reduce.cpp
+1607177984 source:/home/blozds/Desktop/Game/src/Reduce.cpp
 	"Reduce.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1606752620 /home/blozds/Desktop/Game/include/State.h
+1607176940 /home/blozds/Desktop/Game/include/State.h
 	"Entity.h"
 
-1606752692 source:/home/blozds/Desktop/Game/src/State.cpp
+1607176946 source:/home/blozds/Desktop/Game/src/State.cpp
 	"State.h"
 
 1606215246 /home/blozds/Desktop/Game/include/SplashScreen.h
@@ -23,10 +23,10 @@
 1606215694 source:/home/blozds/Desktop/Game/src/SplashScreen.cpp
 	"SplashScreen.h"
 
-1606752747 source:/home/blozds/Desktop/Game/src/gameState.cpp
+1607178816 source:/home/blozds/Desktop/Game/src/gameState.cpp
 	"gameState.h"
 
-1606739380 /home/blozds/Desktop/Game/include/gameState.h
+1607177014 /home/blozds/Desktop/Game/include/gameState.h
 	<State.h>
 
 1606684402 /home/blozds/Desktop/Game/include/Entity.h
@@ -46,11 +46,11 @@
 1606690024 source:/home/blozds/Desktop/Game/src/Entity.cpp
 	"Entity.h"
 
-1606795036 /home/blozds/Desktop/Game/include/MainMenuState.h
+1607180568 /home/blozds/Desktop/Game/include/MainMenuState.h
 	<gameState.h>
 	"Button.h"
 
-1606795430 source:/home/blozds/Desktop/Game/src/MainMenuState.cpp
+1607178895 source:/home/blozds/Desktop/Game/src/MainMenuState.cpp
 	"MainMenuState.h"
 
 1606794831 /home/blozds/Desktop/Game/include/Button.h
@@ -63,6 +63,6 @@
 	<SFML/Window.hpp>
 	<SFML/Audio.hpp>
 
-1606794922 source:/home/blozds/Desktop/Game/src/Button.cpp
+1606795986 source:/home/blozds/Desktop/Game/src/Button.cpp
 	"Button.h"
 

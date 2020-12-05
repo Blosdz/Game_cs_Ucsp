@@ -12,7 +12,7 @@ class gameState : public State
         //funciones
         void initKeybinds();
     public:
-        gameState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys);
+        gameState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys,std::stack<State*>* states);
         virtual ~gameState();
     //funciones
     void endState();

@@ -46,7 +46,7 @@ void Reduce::initKeys()
 
 void Reduce::initStates()
 {
-    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys,&this->states));
 }
 Reduce::Reduce()
 {

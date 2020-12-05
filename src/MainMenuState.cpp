@@ -1,41 +1,29 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys)
-    : State(window,supportedKeys) //inicializacion
+void MainMenuState::initBackground()
 {
-    this->initFonts();
-    this->initKeybinds();
-
-    this->gameState_btn=new Button(70,70,70,50,&this->font,"Starting game",sf::Color::Red,sf::Color::Green,sf::Color::Blue);
-    //ctor
-    this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
-    this->background.setFillColor(sf::Color::Magenta);
+    this->background.setSize(sf::Vector2f
+                             (
+                              static_cast<float>(this->window->getSize().x),
+                              static_cast<float>(this->window->getSize().y)
+                              )
+                             );
+    if(!this->backgroundTexture.loadFromFile("splash.jpg"))
+    {
+        throw"ERROR EN CARGAR EL FONDO";
+    }
+    this->background.setTexture(&this->backgroundTexture);
 }
 
-MainMenuState::~MainMenuState()
-{
-    delete this->gameState_btn;
-    //dtor
-}
-
-
-void MainMenuState::updateInput(const float& dt)
+void MainMenuState::initVariables()
 {
 
-    this->checkForEnd();
 
 }
 
-void MainMenuState::update(const float& dt)
-{
-    this->updateMousePositions();
-    this->updateInput(dt);
-    this->gameState_btn->update(this->mousePosView);
-
-}
 void MainMenuState::initKeybinds()
 {
-    std::ifstream ifs("gamestate_keybinds.conf");
+    std::ifstream ifs("mainmenustate_keybinds.conf");
     if(ifs.is_open())
     {
         std::string key="";
@@ -54,6 +42,15 @@ void MainMenuState::initKeybinds()
 */
 }
 
+
+void MainMenuState::initButtons() //recrear la funcion cada que necesitemos un boton
+{
+    this->buttons["GAME_STATE"]=new Button(304,67,120,50,&this->font,"Starting game",sf::Color::Red,sf::Color::Green,sf::Color::Blue);
+    //ctor
+    this->buttons["EXIT_STATE"]=new Button(514,67,120,50,&this->font,"Quit",sf::Color(70,70,70,200),sf::Color(150,150,150),sf::Color(20,20,20,200));
+}
+
+
 void MainMenuState::initFonts()
 {
     if(!this->font.loadFromFile("sansation.ttf")){
@@ -61,15 +58,103 @@ void MainMenuState::initFonts()
     }
 }
 
+
+MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys,std::stack<State*>* states)
+    : State(window,supportedKeys,states) //inicializacion
+{
+    this->initVariables();
+    this->initBackground();
+    this->initFonts();
+    this->initKeybinds();
+    this->initButtons();
+}
+
+MainMenuState::~MainMenuState()
+{
+    auto it= this->buttons.begin();
+    for(it= this->buttons.begin();it!=this->buttons.end(); ++it )
+    {
+
+        delete it->second;
+    }
+    //dtor
+}
+
+
+
+void MainMenuState::updateInput(const float& dt)
+{
+
+    this->checkForEnd();
+
+}
+
+
+
+void MainMenuState::endState()
+{
+    std::cout<<"ending Game  main menu state!"<<"\n";
+}
+
+void MainMenuState::updateButtons()
+{
+    for(auto &it : this->buttons)
+    {
+        it.second->update(this->mousePosView);
+    }
+
+    if(this->buttons["GAME_STATE"]->isPressed())
+    {
+       this->states->push(new gameState(this->window, this->supportedKeys, this->states)); //puntero a pantalla supporte key y states
+    }
+
+    if(this->buttons["EXIT_STATE"]->isPressed())
+    {
+        this->quit=true;
+    }
+
+
+}
+
+
+
+void MainMenuState::update(const float& dt)
+{
+    this->updateMousePositions();
+    this->updateInput(dt);
+    this->updateButtons();
+    //quit
+
+
+}
+
+
+void MainMenuState::renderButtons(sf::RenderTarget* target)
+{
+    for(auto &it : this->buttons)
+    {
+        it.second->render(target);
+    }
+
+}
+
+
 void MainMenuState::render(sf::RenderTarget* target)
 {
     if(!target)
         target=this->window;
     target->draw(this->background);
-    this->gameState_btn->render(target);
+    //this->gameState_btn->render(target);
+    this->renderButtons(target);
+    /* mostrar texto en pantalla :3
+    sf::Text mouseText;
+    mouseText.setPosition(this->mousePosView.x, this->mousePosView.y -50);
+    mouseText.setFont(this->font);
+    mouseText.setCharacterSize(12);
+    std::stringstream ss;
+    ss<<this->mousePosView.x<<" "<<this->mousePosView.y;
+    mouseText.setString(ss.str());
+    target->draw(mouseText);*/
+
 }
 
-void MainMenuState::endState()
-{
-    std::cout<<"ending Game state!"<<"\n";
-}

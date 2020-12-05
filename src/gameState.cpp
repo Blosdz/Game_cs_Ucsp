@@ -1,8 +1,8 @@
 #include "gameState.h"
 
 
-gameState::gameState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys)
-    : State(window,supportedKeys) //inicializacion
+gameState::gameState(sf::RenderWindow* window, std::map<std::string,int>* supportedKeys,std::stack<State*>* states)
+    : State(window,supportedKeys,states) //inicializacion
 {
     this->initKeybinds();
     //ctor

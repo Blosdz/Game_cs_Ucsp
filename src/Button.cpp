@@ -45,6 +45,7 @@ void Button::update(const sf::Vector2f mousePos)
     {
         this->buttonState=BTN_HOVER;
 
+
         //presionado el boton ...-.-
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
